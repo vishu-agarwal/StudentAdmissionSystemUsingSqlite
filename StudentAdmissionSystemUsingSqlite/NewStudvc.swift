@@ -44,9 +44,9 @@ class NewStudvc: UIViewController {
         
         return txt
     }()
-    private let citytxt:UITextField = {
+    private let passwordtxt:UITextField = {
         let txt = UITextField()
-        txt.placeholder = "Enter city"
+        txt.placeholder = "Enter password"
         txt.textColor = .blue
         txt.borderStyle = .roundedRect
         txt.font = UIFont(name : "", size : 20.0)
@@ -93,11 +93,11 @@ class NewStudvc: UIViewController {
     {
         let name = nametxt.text!
         let id = spidtxt.text!
-        let city = citytxt.text!
+        let password = passwordtxt.text!
         let std = stdtxt.text!
         let age = Int(agetxt.text!)!
         let phone = phonetxt.text!
-        let stud  = student(id: id, name: name, city: city, phone: phone, std: std, age: age)
+        let stud  = student(id: id, name: name, password: password, phone: phone, std: std, age: age)
         /*
         sqlitehandler.shared.insert(stud: stud){
             [weak self] success in
@@ -122,12 +122,12 @@ class NewStudvc: UIViewController {
         
         if let stud = students{
             
-            let updatestud = student(id: stud.spid, name: stud.studName, city: stud.city, phone: stud.phoneno, std: stud.standard, age: stud.age)
+            let updatestud = student(id: stud.spid, name: stud.studName, password: stud.password, phone: stud.phoneno, std: stud.standard, age: stud.age)
             update(stud:updatestud)
             
         }
         else{
-            let insertstud =  student(id: stud.spid, name: stud.studName, city: stud.city, phone: stud.phoneno, std: stud.standard, age: stud.age)
+            let insertstud =  student(id: stud.spid, name: stud.studName, password: stud.password, phone: stud.phoneno, std: stud.standard, age: stud.age)
             insert(stud: insertstud)
             
         }
@@ -190,7 +190,7 @@ class NewStudvc: UIViewController {
         super.viewDidLoad()
         view.addSubview(spidtxt)
         view.addSubview(agetxt)
-        view.addSubview(citytxt)
+        view.addSubview(passwordtxt)
         view.addSubview(nametxt)
         view.addSubview(phonetxt)
         view.addSubview(stdtxt)
@@ -200,7 +200,7 @@ class NewStudvc: UIViewController {
             
             spidtxt.text = stud.spid
             nametxt.text = stud.studName
-            citytxt.text = stud.city
+            passwordtxt.text = stud.password
             phonetxt.text = stud.phoneno
             stdtxt.text = stud.standard
             agetxt.text = String(stud.age)
@@ -219,8 +219,8 @@ class NewStudvc: UIViewController {
         agetxt.frame = CGRect(x: 40, y: nametxt.bottom + 10, width: view.width - 80, height: 40)
         stdtxt.frame = CGRect(x: 40, y: agetxt.bottom + 10, width: view.width - 80, height: 40)
         phonetxt.frame = CGRect(x: 40, y: stdtxt.bottom + 10, width: view.width - 80, height: 40)
-        citytxt.frame = CGRect(x: 40, y: phonetxt.bottom + 10, width: view.width - 80, height: 40)
-        mybtn.frame = CGRect(x: 40, y: citytxt.bottom + 10, width: view.width - 80, height: 40)
+        passwordtxt.frame = CGRect(x: 40, y: phonetxt.bottom + 10, width: view.width - 80, height: 40)
+        mybtn.frame = CGRect(x: 40, y: passwordtxt.bottom + 10, width: view.width - 80, height: 40)
     }
 
 }

@@ -14,13 +14,13 @@ class student{
     var studName : String = ""
     var phoneno : String = ""
     var age: Int = 0
-    var city : String = ""
+    var password : String = ""
     var standard : String = ""
-    init(id:String ,name:String,city:String, phone: String, std: String , age:Int)
+    init(id:String ,name:String,password:String, phone: String, std: String , age:Int)
     {
         self.spid = id
         self.studName = name
-        self.city = city
+        self.password = password
         self.phoneno = phone
         self.standard = std
         self.age = age

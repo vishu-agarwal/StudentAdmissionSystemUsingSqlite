@@ -69,6 +69,8 @@ class EmployeeVc: UIViewController {
 
     override func viewWillAppear(_ animated: Bool)
     {
+        super.viewWillAppear(animated)
+        
         studArray = sqlitehandler.shared.fetch()
         studtbl.reloadData()
          checkAuth()
@@ -100,13 +102,23 @@ extension EmployeeVc : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let id  = studArray[indexPath.row].spid
         
-        sqlitehandler.shared.delete(for: id){
+        sqlitehandler.shared.delete(for: id,completion: {
             [weak self] success in
             
             if success {
-                
-               tableView.deleteRows(at: [indexPath], with: .automatic)
                 self?.studArray.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                
+                let  alert = UIAlertController(title: "Successfully", message: "Deletion Done !!!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: {
+                    [weak self] _ in
+                    let vc = EmployeeVc()
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }))
+                DispatchQueue.main.async {
+                    self?.present(alert,animated: true,completion: nil)
+                }
+                
             }else
             {
                 let  alert = UIAlertController(title: "Warning", message: "Some issue while delte data", preferredStyle: .alert)
@@ -116,8 +128,10 @@ extension EmployeeVc : UITableViewDelegate, UITableViewDataSource{
                 }
             }
             
-        }
+        })
     }
-    
+    /*func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        <#code#>
+    }*/
     
 }

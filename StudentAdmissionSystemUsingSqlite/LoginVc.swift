@@ -10,6 +10,7 @@ import UIKit
 
 class LoginVc: UIViewController {
 
+    private var studarray = [student]()
     
     private let usertxt:UITextField = {
         let txt = UITextField()
@@ -50,18 +51,44 @@ class LoginVc: UIViewController {
         return btn
     }()
     @objc private func loginfunc(){
-        if usertxt.text == "vishakha" && pswdtxt.text == "vishakha"{
+        
+        let scnt = studarray.count
+        
+        if usertxt.text == "admin" && pswdtxt.text == "admin"{
+            let vc = ViewController()
+            navigationController?.pushViewController(vc, animated: true)
+            
             UserDefaults.standard.setValue("abcdefg", forKey: "sessionToken")
             UserDefaults.standard.setValue(usertxt.text, forKey: "username")
             self.dismiss(animated: true)
             
         }
         else{
-            let  alert = UIAlertController(title: "Incorrect!", message: "Username and password is incorrect !", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
-            DispatchQueue.main.async {
-                self.present(alert,animated: true,completion : nil)
+            
+            for i in 0..<scnt
+            {
+                if usertxt.text == studarray[i].spid && pswdtxt.text == studarray[i].password
+                {
+                    let vc = EmployeeVc()
+                    navigationController?.pushViewController(vc, animated: true)
+                    
+                    UserDefaults.standard.setValue("abcdefg", forKey: "sessionToken")
+                    UserDefaults.standard.setValue(usertxt.text, forKey: "username")
+                    self.dismiss(animated: true)
+                    break
+                }
+                else{
+                 
+                    let  alert = UIAlertController(title: "Incorrect!", message: "Username and password is incorrect !", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
+                    DispatchQueue.main.async {
+                        self.present(alert,animated: true,completion : nil)
+                        
+                    }
+                }
             }
+            
+            
             
         }
     }
