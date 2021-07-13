@@ -52,29 +52,36 @@ class LoginVc: UIViewController {
     }()
     @objc private func loginfunc(){
         
-        let scnt = studarray.count
         
-        if usertxt.text == "admin" && pswdtxt.text == "admin"{
+        
+        if usertxt.text == "admin" && pswdtxt.text == "admin"
+        {
             let vc = ViewController()
             navigationController?.pushViewController(vc, animated: true)
             
-            UserDefaults.standard.setValue("abcdefg", forKey: "sessionToken")
-            UserDefaults.standard.setValue(usertxt.text, forKey: "username")
+            UserDefaults.standard.setValue("abcdefg", forKey: "adminToken")
+           UserDefaults.standard.setValue(usertxt.text, forKey: "username")
+            
             self.dismiss(animated: true)
             
         }
-        else{
-            
+        else
+        {
+            let scnt = studarray.count
             for i in 0..<scnt
             {
                 if usertxt.text == studarray[i].spid && pswdtxt.text == studarray[i].password
                 {
-                    let vc = EmployeeVc()
+                    let vc = StudentVC()
                     navigationController?.pushViewController(vc, animated: true)
                     
-                    UserDefaults.standard.setValue("abcdefg", forKey: "sessionToken")
+                    UserDefaults.standard.setValue("qwertyuiop", forKey: "studToken")
                     UserDefaults.standard.setValue(usertxt.text, forKey: "username")
-                    self.dismiss(animated: true)
+                    UserDefaults.standard.setValue(studarray[i].standard, forKey: "std")
+                    UserDefaults.standard.setValue(studarray[i].studName, forKey: "name")
+                    UserDefaults.standard.setValue(studarray[i].phoneno, forKey: "phone")
+                    
+                    //self.dismiss(animated: true)
                     break
                 }
                 else{
@@ -100,6 +107,8 @@ class LoginVc: UIViewController {
         view.addSubview(usertxt)
         view.addSubview(mybtn)
         // Do any additional setup after loading the view.
+        
+        studarray  = sqlitehandler.shared.fetch()
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()

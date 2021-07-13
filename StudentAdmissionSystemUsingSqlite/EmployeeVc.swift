@@ -14,25 +14,19 @@ class EmployeeVc: UIViewController {
     private let studtbl = UITableView()
     private var studArray = [student]()
     
-    @objc private func logoutFunc(){
-        
-        UserDefaults.standard.setValue(nil, forKey: "sessionToken")
-        checkAuth()
-    }
-    
+   
     override func viewDidLoad()
     {
         
         super.viewDidLoad()
         view.addSubview(studtbl)
-        title = "Student"
+        title = "Student - List"
         setuptbl()
         
         view.backgroundColor = .white
         let additem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(newstudfunc))
-        navigationItem.setLeftBarButton(additem, animated: true)
-        let additem2 = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(logoutFunc))
-        navigationItem.setRightBarButton(additem2, animated: true)
+        navigationItem.setRightBarButton(additem, animated: true)
+       
         // Do any additional setup after loading the view.
     }
     
@@ -42,23 +36,6 @@ class EmployeeVc: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
         
         
-    }
-    private func checkAuth(){
-        
-        if let token = UserDefaults.standard.string(forKey: "sessionToken"),
-            let name = UserDefaults.standard.string(forKey: "username")
-        {
-            print("token :: \(name) | \(token)")
-            
-        }
-        else{
-            let vc = LoginVc()
-            let nav = UINavigationController(rootViewController: vc)
-            nav.modalPresentationStyle = .fullScreen
-            nav.setNavigationBarHidden(true, animated: false)
-            present(nav,animated: false)
-            
-        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -73,7 +50,7 @@ class EmployeeVc: UIViewController {
         
         studArray = sqlitehandler.shared.fetch()
         studtbl.reloadData()
-         checkAuth()
+         
         
     }
 }
@@ -130,8 +107,13 @@ extension EmployeeVc : UITableViewDelegate, UITableViewDataSource{
             
         })
     }
-    /*func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        <#code#>
-    }*/
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let vc = NewStudvc()
+        vc.students = studArray[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
+        
+        
+    }
     
 }

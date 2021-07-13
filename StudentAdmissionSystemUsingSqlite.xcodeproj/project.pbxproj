@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B08D3DB269D857900C4F883 /* StudentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B08D3DA269D857900C4F883 /* StudentVC.swift */; };
 		0B0C215F269824B100C4291F /* sqlitehandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0C215E269824B100C4291F /* sqlitehandler.swift */; };
 		0B2449C92698350900E9B216 /* student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2449C82698350900E9B216 /* student.swift */; };
 		0B2449CB26983F6E00E9B216 /* EmployeeVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2449CA26983F6E00E9B216 /* EmployeeVc.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B08D3DA269D857900C4F883 /* StudentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentVC.swift; sourceTree = "<group>"; };
 		0B0C215E269824B100C4291F /* sqlitehandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sqlitehandler.swift; sourceTree = "<group>"; };
 		0B2449C82698350900E9B216 /* student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = student.swift; sourceTree = "<group>"; };
 		0B2449CA26983F6E00E9B216 /* EmployeeVc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeVc.swift; sourceTree = "<group>"; };
@@ -74,15 +76,16 @@
 			children = (
 				0BDB5A5E2696C4C8006FCF32 /* AppDelegate.swift */,
 				0BDB5A602696C4C8006FCF32 /* ViewController.swift */,
+				0B2449CA26983F6E00E9B216 /* EmployeeVc.swift */,
+				0B26690D269C512800E0C08B /* NewNoticeVC.swift */,
+				0B2449CC26983F8400E9B216 /* NewStudvc.swift */,
+				0B2449C82698350900E9B216 /* student.swift */,
 				0B26690B269C4E0100E0C08B /* note.swift */,
 				0B266909269C4BAC00E0C08B /* NoticeVC.swift */,
-				0B2449C82698350900E9B216 /* student.swift */,
-				0B2449CC26983F8400E9B216 /* NewStudvc.swift */,
-				0B26690D269C512800E0C08B /* NewNoticeVC.swift */,
-				0B2449CA26983F6E00E9B216 /* EmployeeVc.swift */,
+				0B08D3DA269D857900C4F883 /* StudentVC.swift */,
+				0B2449D026984C8800E9B216 /* LoginVc.swift */,
 				0B0C215E269824B100C4291F /* sqlitehandler.swift */,
 				0B2449CE26983F9200E9B216 /* File.swift */,
-				0B2449D026984C8800E9B216 /* LoginVc.swift */,
 				0BDB5A622696C4C8006FCF32 /* Main.storyboard */,
 				0BDB5A652696C4C9006FCF32 /* Assets.xcassets */,
 				0BDB5A672696C4C9006FCF32 /* LaunchScreen.storyboard */,
@@ -164,6 +167,7 @@
 			files = (
 				0B26690C269C4E0100E0C08B /* note.swift in Sources */,
 				0B26690E269C512800E0C08B /* NewNoticeVC.swift in Sources */,
+				0B08D3DB269D857900C4F883 /* StudentVC.swift in Sources */,
 				0BDB5A612696C4C8006FCF32 /* ViewController.swift in Sources */,
 				0B2449CD26983F8400E9B216 /* NewStudvc.swift in Sources */,
 				0B2449D126984C8800E9B216 /* LoginVc.swift in Sources */,

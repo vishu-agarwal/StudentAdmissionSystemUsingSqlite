@@ -34,7 +34,7 @@ class NoticeVC: UIViewController {
         
         view.backgroundColor = .white
         let additem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(newNoticefunc))
-        navigationItem.setLeftBarButton(additem, animated: true)
+        navigationItem.setRightBarButton(additem, animated: true)
        /* let additem2 = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(logoutFunc))
         navigationItem.setRightBarButton(additem2, animated: true)*/
     }

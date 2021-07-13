@@ -5,21 +5,12 @@
 //  Created by DCS on 08/07/21.
 //  Copyright © 2021 DCS. All rights reserved.
 //
-
+//admin pannel  ..................
 import UIKit
 
 class ViewController: UIViewController {
 
-    private let mylbl : UILabel = {
-        let lbl = UILabel()
-        lbl.font = .systemFont(ofSize : 50)
-        lbl.textColor = .white
-        
-        lbl.text = "Welcome !!"
-        lbl.textAlignment = .center
-        
-        return lbl
-    }()
+   
     
     private let mybtn: UIButton = {
         let btn = UIButton()
@@ -54,6 +45,30 @@ class ViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
         
     }
+    @objc private func logoutFunc(){
+     
+     UserDefaults.standard.setValue(nil, forKey: "adminToken")
+     checkAuth()
+     }
+    
+     private func checkAuth(){
+     
+     if let token = UserDefaults.standard.string(forKey: "adminToken"),
+     let name = UserDefaults.standard.string(forKey: "username")
+     {
+     print("token :: \(name) | \(token)")
+     
+     }
+    else
+     {
+            let vc = LoginVc()
+            let nav = UINavigationController(rootViewController: vc)
+            nav.modalPresentationStyle = .fullScreen
+            nav.setNavigationBarHidden(true, animated: false)
+            present(nav,animated: false)
+
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,18 +76,22 @@ class ViewController: UIViewController {
         
         view.addSubview(mybtn)
         view.addSubview(mybtn2)
-        view.addSubview(mylbl)
+       // view.addSubview(mylbl)
         
         view.backgroundColor = .brown
-        
+         let additem2 = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(logoutFunc))
+        navigationItem.setRightBarButton(additem2, animated: true)
         // Do any additional setup after loading the view.
+        
+        checkAuth()
+        
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        mylbl.frame = CGRect(x: 75, y: view.safeAreaInsets.top + 30, width: view.width, height: 80)
-        mybtn.frame = CGRect(x: 75, y: mylbl.bottom + 40, width: view.width/2, height: 100)
+        //mylbl.frame = CGRect(x: 75, y: view.safeAreaInsets.top + 30, width: view.width, height: 80)
+        mybtn.frame = CGRect(x: 75, y: view.safeAreaInsets.top + 40, width: view.width/2, height: 100)
         mybtn2.frame = CGRect(x: 75, y: mybtn.bottom + 20, width: view.width / 2, height: 100)
         
     }

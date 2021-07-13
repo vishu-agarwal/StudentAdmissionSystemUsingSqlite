@@ -12,7 +12,8 @@ class NewStudvc: UIViewController {
     
     
     var students : student?
-
+    
+    
     private let spidtxt:UITextField = {
         let txt = UITextField()
         txt.placeholder = "Enter SPID"
@@ -120,7 +121,10 @@ class NewStudvc: UIViewController {
             
         }*/
         
-        if let stud = students{
+        
+        
+        if let stud = students
+        {
             
             let updatestud = student(id: stud.spid, name: stud.studName, password: stud.password, phone: stud.phoneno, std: stud.standard, age: stud.age)
             update(stud:updatestud)
@@ -163,19 +167,23 @@ class NewStudvc: UIViewController {
     
     private func update (stud : student)
     {
-        sqlitehandler.shared.update(stud: stud){
+        sqlitehandler.shared.update(stud: stud)
+        {
             [weak self] success in
             
             if success {
                 
-                let  alert = UIAlertController(title: "Success!", message: "insert datra successfully", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: {[weak self]  _ in self?.navigationController?.popViewController(animated: true)}))
+                let  alert = UIAlertController(title: "Success!", message: "update datra successfully", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: {[weak self]  _ in self?.navigationController?.popViewController(animated: true)
+                    
+                }))
                 DispatchQueue.main.async {
                     self?.present(alert,animated: true,completion: nil)
                 }
+                
             }else
             {
-                let  alert = UIAlertController(title: "Warniong", message: "Some issue while save data", preferredStyle: .alert)
+                let  alert = UIAlertController(title: "Warning", message: "Some issue while save data", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
                 DispatchQueue.main.async {
                     self?.present(alert,animated: true,completion: nil)
@@ -196,9 +204,15 @@ class NewStudvc: UIViewController {
         view.addSubview(stdtxt)
         view.addSubview(mybtn)
         view.backgroundColor = .black
-        if let stud = students{
+        
+        
+        //update
+        
+        if let stud = students
+        {
             
             spidtxt.text = stud.spid
+            spidtxt.isEnabled = false
             nametxt.text = stud.studName
             passwordtxt.text = stud.password
             phonetxt.text = stud.phoneno
@@ -208,7 +222,7 @@ class NewStudvc: UIViewController {
             
             
         }
-        // Do any additional setup after loading the view.
+        
     }
     
     override func viewDidLayoutSubviews() {

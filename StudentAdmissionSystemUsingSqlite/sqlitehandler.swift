@@ -99,8 +99,8 @@ age INTEGER
             sqlite3_bind_text(insertstmnt, 1, (stud.spid as NSString).utf8String, -1, nil)
             sqlite3_bind_text(insertstmnt, 2, (stud.studName as NSString).utf8String, -1, nil)
             sqlite3_bind_text(insertstmnt, 3, (stud.password as NSString).utf8String, -1, nil)
-            sqlite3_bind_text(insertstmnt, 4, (stud.standard as NSString).utf8String, -1, nil)
-            sqlite3_bind_text(insertstmnt, 5, (stud.phoneno as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(insertstmnt, 4, (stud.phoneno as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(insertstmnt, 5, (stud.standard as NSString).utf8String, -1, nil)
             sqlite3_bind_int(insertstmnt, 6, Int32(stud.age))
             
             
@@ -163,7 +163,7 @@ age INTEGER
     
     {
         
-        let updatestr = "UPDATE student SET studName = ? ,  password = ? , standard = ?, phoneno = ? ,age = ?  WHERE spid = ?;"
+        let updatestr = "UPDATE student SET studName = ? ,  password = ? , phoneno = ?, standard = ? ,age = ?  WHERE spid = ?;"
         
         var updatestmnt : OpaquePointer? = nil
         
@@ -175,8 +175,8 @@ age INTEGER
            
             sqlite3_bind_text(updatestmnt, 1, (stud.studName as NSString).utf8String, -1, nil)
             sqlite3_bind_text(updatestmnt, 2, (stud.password as NSString).utf8String, -1, nil)
-            sqlite3_bind_text(updatestmnt, 3, (stud.standard as NSString).utf8String, -1, nil)
-            sqlite3_bind_text(updatestmnt, 4, (stud.phoneno as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(updatestmnt, 3, (stud.phoneno as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(updatestmnt, 4, (stud.standard as NSString).utf8String, -1, nil)
             sqlite3_bind_int(updatestmnt, 5, Int32(stud.age))
             
             
@@ -276,6 +276,44 @@ msg STRING
             print("table staement note prepared...")
         }
         sqlite3_reset(createtblstmnt)
+    }
+    
+    func updatepwd(stud : student,completion :@escaping(Bool) -> Void){
+        let updatestr = "UPDATE student SET password = ? WHERE spid = ?;"
+        
+        var updatestmnt : OpaquePointer? = nil
+        
+        // prepare
+        if sqlite3_prepare_v2(db,updatestr, -1, &updatestmnt, nil) == SQLITE_OK
+        {
+            //binding
+            
+            
+            sqlite3_bind_text(updatestmnt, 1, (stud.studName as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(updatestmnt, 2, (stud.password as NSString).utf8String, -1, nil)
+           
+            
+            if sqlite3_step(updatestmnt ) == SQLITE_DONE
+            {
+                print("upadte student")
+                completion(true)
+            }
+            else{
+                
+                completion(false)
+                print("update not done")
+            }
+            
+            
+        }
+        else
+        {
+            completion(false)
+            
+            print("update staement note prepared...")
+        }
+        sqlite3_reset(updatestmnt)
+        
     }
     
     func ninsert(note: note, completion : @escaping(Bool)->Void){
