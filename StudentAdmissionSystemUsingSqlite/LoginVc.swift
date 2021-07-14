@@ -56,9 +56,14 @@ class LoginVc: UIViewController {
         
         if usertxt.text == "admin" && pswdtxt.text == "admin"
         {
-            let vc = ViewController()
-            navigationController?.pushViewController(vc, animated: true)
+           /* let vc = ViewController()
+             navigationController?.pushViewController(vc, animated: true)*/
             
+            let vc = ViewController()
+            let nav = UINavigationController(rootViewController: vc)
+            nav.modalPresentationStyle = .fullScreen
+            nav.setNavigationBarHidden(false, animated: true)
+            present(nav,animated: true)
             UserDefaults.standard.setValue("abcdefg", forKey: "adminToken")
            UserDefaults.standard.setValue(usertxt.text, forKey: "username")
             
@@ -72,14 +77,19 @@ class LoginVc: UIViewController {
             {
                 if usertxt.text == studarray[i].spid && pswdtxt.text == studarray[i].password
                 {
+                    /*let vc = StudentVC()
+                    navigationController?.pushViewController(vc, animated: true)*/
                     let vc = StudentVC()
-                    navigationController?.pushViewController(vc, animated: true)
+                    let nav = UINavigationController(rootViewController: vc)
+                    nav.modalPresentationStyle = .fullScreen
+                    nav.setNavigationBarHidden(false, animated: true)
+                    present(nav,animated: true)
                     
                     UserDefaults.standard.setValue("qwertyuiop", forKey: "studToken")
                     UserDefaults.standard.setValue(usertxt.text, forKey: "username")
-                    UserDefaults.standard.setValue(studarray[i].standard, forKey: "std")
-                    UserDefaults.standard.setValue(studarray[i].studName, forKey: "name")
-                    UserDefaults.standard.setValue(studarray[i].phoneno, forKey: "phone")
+                   // UserDefaults.standard.setValue(studarray[i].standard, forKey: "std")
+                 //   UserDefaults.standard.setValue(studarray[i].studName, forKey: "name")
+                 //   UserDefaults.standard.setValue(studarray[i].phoneno, forKey: "phone")
                     
                     //self.dismiss(animated: true)
                     break
@@ -107,9 +117,45 @@ class LoginVc: UIViewController {
         view.addSubview(usertxt)
         view.addSubview(mybtn)
         // Do any additional setup after loading the view.
-        
+        view.backgroundColor = .lightGray
         studarray  = sqlitehandler.shared.fetch()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if UserDefaults.standard.string(forKey: "adminToken") != nil
+            //("abcdefg", forKey: "adminToken"
+        {
+            /*let vc = ViewController()
+            navigationController?.pushViewController(vc, animated: true)*/
+            let vc = ViewController()
+         let nav = UINavigationController(rootViewController: vc)
+         nav.modalPresentationStyle = .fullScreen
+            nav.setNavigationBarHidden(false, animated: true)
+         present(nav,animated: true)
+ 
+ }
+        else if UserDefaults.standard.string(forKey: "studToken") != nil
+            //("qwertyuiop", forKey: "studToken") != nil
+        {
+            /*let vc = StudentVC()
+            navigationController?.pushViewController(vc, animated: true)*/
+            let vc = StudentVC()
+            let nav = UINavigationController(rootViewController: vc)
+            nav.modalPresentationStyle = .fullScreen
+            nav.setNavigationBarHidden(false, animated: true)
+            present(nav,animated: true)
+            
+        }
+       /* else{
+            print("Remain on login Screen")
+            let vc = LoginVc()
+            navigationController?.pushViewController(vc, animated: false)
+            
+        }*/
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         

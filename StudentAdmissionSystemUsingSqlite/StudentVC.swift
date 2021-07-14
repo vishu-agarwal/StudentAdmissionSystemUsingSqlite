@@ -11,62 +11,63 @@ import UIKit
 class StudentVC: UIViewController {
 
     let sid = UserDefaults.standard.string(forKey: "username")
-    let sname = UserDefaults.standard.string(forKey: "name")
-    let sclass = UserDefaults.standard.string(forKey: "std")
-    let sphone = UserDefaults.standard.string(forKey: "phone")
+   // let sname = UserDefaults.standard.string(forKey: "name")
+  //  let sclass = UserDefaults.standard.string(forKey: "std")
+  //  let sphone = UserDefaults.standard.string(forKey: "phone")
     
     private var studarray = [student]()
     private var noticearray = [note]()
     
-    private let namlbl : UILabel = {
-        let lbl = UILabel()
-        lbl.font = .systemFont(ofSize : 30)
+    private let namlbl : UITextField = {
+        let lbl = UITextField()
+        lbl.font = .systemFont(ofSize : 25)
         lbl.textColor = .white
+        lbl.isEnabled = false
         
-        lbl.text = ""
+        
         lbl.textAlignment = .center
         
         return lbl
     }()
     
-    private let userlbl : UILabel = {
-        let lbl = UILabel()
-        lbl.font = .systemFont(ofSize : 30)
+    private let userlbl : UITextField = {
+        let lbl = UITextField()
+        lbl.font = .systemFont(ofSize : 25)
         lbl.textColor = .white
-        
-        lbl.text = ""
+        lbl.isEnabled = false
+//        lbl.text = ""
         lbl.textAlignment = .center
         
         return lbl
     }()
     
-    private let noticelbl : UILabel = {
-        let lbl = UILabel()
-        lbl.font = .systemFont(ofSize : 15)
+    private let noticelbl :UITextField = {
+        let lbl = UITextField()
+        lbl.font = .systemFont(ofSize : 20)
         lbl.textColor = .white
-        
-        lbl.text = ""
+        lbl.isEnabled = false
+      //  lbl.text = ""
         lbl.textAlignment = .center
         
         return lbl
     }()
     
-    private let stdlbl : UILabel = {
-        let lbl = UILabel()
-        lbl.font = .systemFont(ofSize : 30)
+    private let stdlbl : UITextField = {
+        let lbl = UITextField()
+        lbl.font = .systemFont(ofSize : 25)
         lbl.textColor = .white
-        
-        lbl.text = ""
+       // btn.setTitleColor(.white, for: .normal)
+       // lbl.layer.borderWidth = 10        //lbl.text = ""
         lbl.textAlignment = .center
-        
+        lbl.isEnabled = false
         return lbl
     }()
 
-    private let phonelbl : UILabel = {
-        let lbl = UILabel()
+    private let phonelbl : UITextField = {
+        let lbl = UITextField()
         lbl.font = .systemFont(ofSize : 20)
         lbl.textColor = .white
-        
+        lbl.isEnabled = false
         lbl.text = ""
         lbl.textAlignment = .center
         
@@ -77,11 +78,11 @@ class StudentVC: UIViewController {
         let btn = UIButton()
         btn.setTitle("CLICK ME !!", for: .normal)
         btn.setTitleColor(.white, for: .normal)
-        btn.layer.borderWidth = 10
+       // btn.layer.borderWidth = 10
         
         btn.addTarget(self, action: #selector(changepwd), for: .touchUpInside)
         btn.backgroundColor = .blue
-        btn.layer.cornerRadius = 30
+        btn.layer.cornerRadius = 20
         return btn
     }()
     
@@ -98,7 +99,7 @@ class StudentVC: UIViewController {
                 let std = self.studarray[i].standard
                 let phn = self.studarray[i].phoneno
                 let age = self.studarray[i].age
-                
+                //let pwd = self.studarray[i].password
                 
                 let  alert = UIAlertController(title: "Update Password", message: "This is your password Change it If want !! ", preferredStyle: .alert)
                 alert.addTextField{(tf) in
@@ -156,24 +157,29 @@ class StudentVC: UIViewController {
     @objc private func logoutFunc(){
         
         UserDefaults.standard.setValue(nil, forKey: "studToken")
+        UserDefaults.standard.setValue(nil, forKey: "username")
         checkAuth()
     }
     
     private func checkAuth(){
         
         if let token = UserDefaults.standard.string(forKey: "studToken")
-            //let name = UserDefaults.standard.string(forKey: "username")
+        //let name = UserDefaults.standard.string(forKey: "username")
         {
-            print("token :: \(sname) | \(token)")
+            print("token :: \(token)")
             
         }
         else
         {
-            let vc = LoginVc()
-            let nav = UINavigationController(rootViewController: vc)
+            //let vc = LoginVc()
+           /* let nav = UINavigationController(rootViewController: vc)
             nav.modalPresentationStyle = .fullScreen
             nav.setNavigationBarHidden(true, animated: false)
-            present(nav,animated: false)
+            present(nav,animated: false)*/
+            self.navigationController?.popViewController(animated: true)
+            
+            
+            //(vc, animated: true)
             
         }
     }
@@ -181,7 +187,7 @@ class StudentVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .black
+        view.backgroundColor = .red
         
         title = "Student - Profile"
         
@@ -209,13 +215,26 @@ class StudentVC: UIViewController {
         let c = noticearray.count
         for i in 0..<c
         {
-            noticelbl.text = noticearray[i].msg
+            noticelbl.text  = noticearray[i].msg
         }
-        
-        namlbl.text = sname
+        let cnt = studarray.count
+        for j in 0..<cnt
+        {
+            if sid == studarray[j].spid
+            {
+                
+                namlbl.text = studarray[j].studName
+                stdlbl.text = studarray[j].standard
+                userlbl.text = studarray[j].spid
+                phonelbl.text = studarray[j].phoneno
+               // break
+            }
+            
+        }
+        /*namlbl.text = sname
         stdlbl.text = sclass
         userlbl.text = sid
-        phonelbl.text = sphone
+        phonelbl.text = sphone*/
         
         checkAuth()
         
@@ -223,12 +242,12 @@ class StudentVC: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        userlbl.frame = CGRect(x: 120, y: view.safeAreaInsets.top + 20, width: 100, height: 100)
-        namlbl.frame = CGRect(x: 120, y: userlbl.bottom + 5, width: 100, height: 100)
-        stdlbl.frame = CGRect(x: 120, y: namlbl.bottom + 5, width: 100, height: 100)
-        phonelbl.frame = CGRect(x: 100, y: stdlbl.bottom + 5, width: 200, height: 100)
-        noticelbl.frame = CGRect(x: 5, y: phonelbl.bottom + 5, width: 300, height: 100)
-        mybtn.frame = CGRect(x: 80, y: noticelbl.bottom + 1, width: 200, height: 100)
+        userlbl.frame = CGRect(x: 100, y: view.safeAreaInsets.top + 20, width: 200, height: 80)
+        namlbl.frame = CGRect(x: 100, y: userlbl.bottom + 5, width: 100, height: 80)
+        stdlbl.frame = CGRect(x: 100, y: namlbl.bottom + 5, width: 100, height: 80)
+        phonelbl.frame = CGRect(x: 100, y: stdlbl.bottom + 5, width: 200, height: 80)
+        noticelbl.frame = CGRect(x: 5, y: phonelbl.bottom + 2, width: 300, height: 80)
+        mybtn.frame = CGRect(x: 80, y: 630, width: 200, height: 80)
         
 
         

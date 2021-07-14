@@ -11,6 +11,15 @@ import UIKit
 class ViewController: UIViewController {
 
    
+    private let myImg: UIImageView = {
+        
+        let img = UIImageView()
+        img.contentMode = .scaleAspectFill
+        img.layer.cornerRadius = 6
+   img.image = UIImage(named: "admin")
+        img.clipsToBounds = true
+        return img
+    }()
     
     private let mybtn: UIButton = {
         let btn = UIButton()
@@ -61,11 +70,14 @@ class ViewController: UIViewController {
      }
     else
      {
-            let vc = LoginVc()
+            /*let vc = LoginVc()
             let nav = UINavigationController(rootViewController: vc)
             nav.modalPresentationStyle = .fullScreen
             nav.setNavigationBarHidden(true, animated: false)
-            present(nav,animated: false)
+            present(nav,animated: false)*/
+        
+        navigationController?.popViewController(animated: true)
+        
 
         }
     }
@@ -73,12 +85,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Admin"
-        
+        view.addSubview(myImg)
         view.addSubview(mybtn)
         view.addSubview(mybtn2)
        // view.addSubview(mylbl)
         
-        view.backgroundColor = .brown
+        view.backgroundColor = .white
          let additem2 = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(logoutFunc))
         navigationItem.setRightBarButton(additem2, animated: true)
         // Do any additional setup after loading the view.
@@ -90,9 +102,9 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        //mylbl.frame = CGRect(x: 75, y: view.safeAreaInsets.top + 30, width: view.width, height: 80)
-        mybtn.frame = CGRect(x: 75, y: view.safeAreaInsets.top + 40, width: view.width/2, height: 100)
-        mybtn2.frame = CGRect(x: 75, y: mybtn.bottom + 20, width: view.width / 2, height: 100)
+        myImg.frame = CGRect(x: 40, y: view.safeAreaInsets.top + 30, width: 300, height: 150)
+        mybtn.frame = CGRect(x: 80, y: myImg.bottom + 50, width: view.width/2, height: 100)
+        mybtn2.frame = CGRect(x: 80, y: mybtn.bottom + 30, width: view.width / 2, height: 100)
         
     }
 

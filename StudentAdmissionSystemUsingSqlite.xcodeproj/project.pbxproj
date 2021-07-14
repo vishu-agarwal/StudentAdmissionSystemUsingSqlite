@@ -76,10 +76,10 @@
 			children = (
 				0BDB5A5E2696C4C8006FCF32 /* AppDelegate.swift */,
 				0BDB5A602696C4C8006FCF32 /* ViewController.swift */,
-				0B2449CA26983F6E00E9B216 /* EmployeeVc.swift */,
 				0B26690D269C512800E0C08B /* NewNoticeVC.swift */,
 				0B2449CC26983F8400E9B216 /* NewStudvc.swift */,
 				0B2449C82698350900E9B216 /* student.swift */,
+				0B2449CA26983F6E00E9B216 /* EmployeeVc.swift */,
 				0B26690B269C4E0100E0C08B /* note.swift */,
 				0B266909269C4BAC00E0C08B /* NoticeVC.swift */,
 				0B08D3DA269D857900C4F883 /* StudentVC.swift */,

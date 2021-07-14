@@ -22,6 +22,7 @@ class sqlitehandler {
     private init(){
         db = openDB()
         createTbl()
+        ncreateTbl()
     }
     
     func openDB() -> OpaquePointer?
@@ -246,7 +247,7 @@ age INTEGER
         let createtblStr = """
         
 CREATE TABLE IF NOT EXISTS note(
-nid INT PRIMARY KEY AUTOINCREMENT,
+nid INTEGER PRIMARY KEY AUTOINCREMENT,
 ntitle STRING,
 msg STRING
 );
@@ -289,19 +290,19 @@ msg STRING
             //binding
             
             
-            sqlite3_bind_text(updatestmnt, 1, (stud.studName as NSString).utf8String, -1, nil)
-            sqlite3_bind_text(updatestmnt, 2, (stud.password as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(updatestmnt, 1, (stud.password as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(updatestmnt, 2, (stud.spid as NSString).utf8String, -1, nil)
            
             
             if sqlite3_step(updatestmnt ) == SQLITE_DONE
             {
-                print("upadte student")
+                print("upadte password")
                 completion(true)
             }
             else{
                 
                 completion(false)
-                print("update not done")
+                print("update password not done")
             }
             
             
@@ -316,28 +317,28 @@ msg STRING
         
     }
     
-    func ninsert(note: note, completion : @escaping(Bool)->Void){
+    func ninsert(notes: note, completion : @escaping(Bool)->Void){
         
-        let insertstr = "INSERT INTO note (nid, ntitle, msg) VALUES (?,?,?);"
+        let insertstr = "INSERT INTO note (ntitle, msg) VALUES (?,?);"
         
         var insertstmnt: OpaquePointer? = nil
         if sqlite3_prepare_v2(db, insertstr, -1, &insertstmnt, nil) == SQLITE_OK
         {
             //binding
             
-            sqlite3_bind_text(insertstmnt, 1, (note.ntitle as NSString).utf8String, -1, nil)
-            sqlite3_bind_text(insertstmnt, 2, (note.msg as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(insertstmnt, 1, (notes.ntitle as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(insertstmnt, 2, (notes.msg as NSString).utf8String, -1, nil)
             
             
             if sqlite3_step(insertstmnt ) == SQLITE_DONE
             {
-                print("insert student")
+                print("insert notice")
                 completion(true)
             }
             else{
                 
                 completion(false)
-                print("insert not done")
+                print("insert notice not done")
             }
             
             

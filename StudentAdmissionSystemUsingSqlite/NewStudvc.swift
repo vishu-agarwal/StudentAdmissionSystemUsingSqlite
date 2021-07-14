@@ -99,6 +99,7 @@ class NewStudvc: UIViewController {
         let age = Int(agetxt.text!)!
         let phone = phonetxt.text!
         let stud  = student(id: id, name: name, password: password, phone: phone, std: std, age: age)
+        
         /*
         sqlitehandler.shared.insert(stud: stud){
             [weak self] success in

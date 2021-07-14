@@ -73,18 +73,30 @@ extension NoticeVC : UITableViewDelegate, UITableViewDataSource{
         
         
     }
-    /*
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let id  = noticearray[indexPath.row].spid
+       
+        let id  = noticearray[indexPath.row].nid
         
-        sqlitehandler.shared.delete(for: id){
+        sqlitehandler.shared.ndelete(for: String(id),completion:
+        {
             [weak self] success in
-            
             if success {
-                
-                tableView.deleteRows(at: [indexPath], with: .automatic)
                 self?.noticearray.remove(at: indexPath.row)
-            }else
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                
+                let  alert = UIAlertController(title: "Successfully", message: "Deletion Done !!!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: {
+                    [weak self] _ in
+                    let vc = NoticeVC()
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }))
+                DispatchQueue.main.async {
+                    self?.present(alert,animated: true,completion: nil)
+                }
+                
+            }
+            else
             {
                 let  alert = UIAlertController(title: "Warning", message: "Some issue while delte data", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
@@ -93,11 +105,15 @@ extension NoticeVC : UITableViewDelegate, UITableViewDataSource{
                 }
             }
             
-        }
-    }*/
+            
+        })
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let vc = NewNoticeVC()
+        vc.notes = noticearray[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     

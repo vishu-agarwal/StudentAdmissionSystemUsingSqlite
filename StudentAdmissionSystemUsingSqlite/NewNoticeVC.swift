@@ -43,26 +43,28 @@ class NewNoticeVC: UIViewController {
         let name = txttitle.text!
        
         let cont = contentView.text!
-       
-        if let notes = notes
+        
+        let notice = note(nid: 0, ntitle: name, msg: cont)
+        
+        if let notice = notes
         {
             
-            let updatenote = note(nid: notes.nid, ntitle: name, msg: cont)
+            let updatenote = note(nid: notice.nid, ntitle: name, msg: cont)
             update(notes:updatenote)
             
         }
         else{
-            let insertnote =  note(nid: notes.nid, ntitle: name, msg: cont)
-            insert(notes: insertnote)
+            let insertnote =  note(nid: notice.nid, ntitle: name, msg: cont)
+            insert(notice: insertnote)
             
         }
         
         
     }
     
-    private func insert (notes: note)
+    private func insert (notice: note)
     {
-        sqlitehandler.shared.ninsert(note: notes)
+        sqlitehandler.shared.ninsert(notes: notice)
         {
             [weak self] success in
             
@@ -126,15 +128,12 @@ class NewNoticeVC: UIViewController {
         view.addSubview(txttitle)
         view.addSubview(contentView)
         
-        if let notes = notes
+        if let notice = notes
         {
             
-            txttitle.text = notes.ntitle
+            txttitle.text = notice.ntitle
            
-            contentView.text = notes.msg
-            
-            
-            
+            contentView.text = notice.msg
             
         }
 
