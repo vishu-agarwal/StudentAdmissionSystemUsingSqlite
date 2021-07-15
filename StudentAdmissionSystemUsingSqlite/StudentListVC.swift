@@ -1,5 +1,5 @@
 //
-//  EmployeeVc.swift
+//  StudentListVC.swift
 //  StudentManagementSystemCoreData
 //
 //  Created by DCS on 08/07/21.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class EmployeeVc: UIViewController {
+class StudentListVC: UIViewController {
 
     
     private let studtbl = UITableView()
-    private var studArray = [student]()
+    private var studArray = [Student]()
     
    
     override func viewDidLoad()
@@ -48,13 +48,13 @@ class EmployeeVc: UIViewController {
     {
         super.viewWillAppear(animated)
         
-        studArray = sqlitehandler.shared.fetch()
+        studArray = CoreDataHandler.shared.fetch()
         studtbl.reloadData()
          
         
     }
 }
-extension EmployeeVc : UITableViewDelegate, UITableViewDataSource{
+extension StudentListVC : UITableViewDelegate, UITableViewDataSource{
     private func setuptbl(){
         
         studtbl.register(UITableViewCell.self, forCellReuseIdentifier: "studcell")
@@ -69,43 +69,29 @@ extension EmployeeVc : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "studcell", for : indexPath)
         let stud  = studArray[indexPath.row]
-        cell.textLabel?.text = "\(stud.spid)\t|\t\(stud.studName)\t|\t\(stud.standard)"
+        cell.textLabel?.text = "\(stud.spid!)\t|\t\(stud.studName!)\t|\t\(stud.standard!)"
         
         return cell
         
         
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let id  = studArray[indexPath.row].spid
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
+    {
+        let stud  = studArray[indexPath.row]
         
-        sqlitehandler.shared.delete(for: id,completion: {
-            [weak self] success in
+        CoreDataHandler.shared.delete(stud: stud)
+        {
+            [weak self] in
             
-            if success {
+           
                 self?.studArray.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
                 
-                let  alert = UIAlertController(title: "Successfully", message: "Deletion Done !!!", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: {
-                    [weak self] _ in
-                    let vc = EmployeeVc()
-                    self?.navigationController?.pushViewController(vc, animated: true)
-                }))
-                DispatchQueue.main.async {
-                    self?.present(alert,animated: true,completion: nil)
-                }
-                
-            }else
-            {
-                let  alert = UIAlertController(title: "Warning", message: "Some issue while delte data", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
-                DispatchQueue.main.async {
-                    self?.present(alert,animated: true,completion: nil)
-                }
-            }
+        }
+        
             
-        })
+        
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

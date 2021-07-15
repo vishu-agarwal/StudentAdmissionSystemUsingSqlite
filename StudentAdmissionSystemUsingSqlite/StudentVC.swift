@@ -10,7 +10,7 @@ import UIKit
 
 class StudentVC: UIViewController {
 
-    let sid = UserDefaults.standard.string(forKey: "username")
+    var sid = ""
    // let sname = UserDefaults.standard.string(forKey: "name")
   //  let sclass = UserDefaults.standard.string(forKey: "std")
   //  let sphone = UserDefaults.standard.string(forKey: "phone")
@@ -76,7 +76,7 @@ class StudentVC: UIViewController {
     
     private let mybtn: UIButton = {
         let btn = UIButton()
-        btn.setTitle("CLICK ME !!", for: .normal)
+        btn.setTitle("Change Password!", for: .normal)
         btn.setTitleColor(.white, for: .normal)
        // btn.layer.borderWidth = 10
         
@@ -176,9 +176,9 @@ class StudentVC: UIViewController {
             nav.modalPresentationStyle = .fullScreen
             nav.setNavigationBarHidden(true, animated: false)
             present(nav,animated: false)*/
-            self.navigationController?.popViewController(animated: true)
+            //self.navigationController?.popViewController(animated: true)
             
-            
+            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
             //(vc, animated: true)
             
         }
@@ -208,6 +208,8 @@ class StudentVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        sid = UserDefaults.standard.string(forKey: "username")!
         
         studarray = sqlitehandler.shared.fetch()
         noticearray = sqlitehandler.shared.nfetch()
@@ -247,7 +249,7 @@ class StudentVC: UIViewController {
         stdlbl.frame = CGRect(x: 100, y: namlbl.bottom + 5, width: 100, height: 80)
         phonelbl.frame = CGRect(x: 100, y: stdlbl.bottom + 5, width: 200, height: 80)
         noticelbl.frame = CGRect(x: 5, y: phonelbl.bottom + 2, width: 300, height: 80)
-        mybtn.frame = CGRect(x: 80, y: 630, width: 200, height: 80)
+        mybtn.frame = CGRect(x: 20, y: 630, width: view.width - 40, height: 80)
         
 
         

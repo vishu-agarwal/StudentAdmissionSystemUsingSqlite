@@ -16,6 +16,7 @@ class LoginVc: UIViewController {
         let txt = UITextField()
         txt.placeholder = "ENTER USER NAME "
         txt.textColor = .blue
+        txt.text = ""
         //txt.autocorrectionType = .
         txt.autocapitalizationType = .none
         txt.borderStyle = .roundedRect
@@ -29,6 +30,7 @@ class LoginVc: UIViewController {
         txt.placeholder = "ENTER PASSWORD "
         txt.textColor = .blue
         txt.isSecureTextEntry = true
+        txt.text = ""
         //txt.autocorrectionType = .
         txt.autocapitalizationType = .none
         txt.borderStyle = .roundedRect
@@ -82,7 +84,7 @@ class LoginVc: UIViewController {
                     let vc = StudentVC()
                     let nav = UINavigationController(rootViewController: vc)
                     nav.modalPresentationStyle = .fullScreen
-                    nav.setNavigationBarHidden(false, animated: true)
+                    nav.setNavigationBarHidden(false, animated: false)
                     present(nav,animated: true)
                     
                     UserDefaults.standard.setValue("qwertyuiop", forKey: "studToken")
@@ -123,6 +125,9 @@ class LoginVc: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        pswdtxt.text = ""
+        usertxt.text = ""
         
         if UserDefaults.standard.string(forKey: "adminToken") != nil
             //("abcdefg", forKey: "adminToken"

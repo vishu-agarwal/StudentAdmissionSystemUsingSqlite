@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         return btn
     }()
     @objc private func studDetail(){
-        let vc = EmployeeVc()
+        let vc = StudentListVC()
         navigationController?.pushViewController(vc, animated: true)
         
     }
@@ -76,9 +76,9 @@ class ViewController: UIViewController {
             nav.setNavigationBarHidden(true, animated: false)
             present(nav,animated: false)*/
         
-        navigationController?.popViewController(animated: true)
+        //navigationController?.popViewController(animated: true)
         
-
+        self.view.window?.rootViewController?.dismiss(animated: false, completion: nil)
         }
     }
     override func viewDidLoad() {
