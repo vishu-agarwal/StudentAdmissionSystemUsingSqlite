@@ -10,7 +10,7 @@ import UIKit
 
 class LoginVc: UIViewController {
 
-    private var studarray = [student]()
+    private var studarray = [Student]()
     
     private let usertxt:UITextField = {
         let txt = UITextField()
@@ -120,7 +120,7 @@ class LoginVc: UIViewController {
         view.addSubview(mybtn)
         // Do any additional setup after loading the view.
         view.backgroundColor = .lightGray
-        studarray  = sqlitehandler.shared.fetch()
+        studarray  = CoreDataHandler.shared.fetch()
     }
     
     override func viewWillAppear(_ animated: Bool) {

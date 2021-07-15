@@ -10,6 +10,7 @@ import UIKit
 
 class StudentVC: UIViewController {
 
+    var msgdisp = ""
     var sid = ""
    // let sname = UserDefaults.standard.string(forKey: "name")
   //  let sclass = UserDefaults.standard.string(forKey: "std")
@@ -21,9 +22,9 @@ class StudentVC: UIViewController {
     private let namlbl : UITextField = {
         let lbl = UITextField()
         lbl.font = .systemFont(ofSize : 25)
-        lbl.textColor = .white
+        lbl.textColor = .blue
         lbl.isEnabled = false
-        
+        //lbl.bor
         
         lbl.textAlignment = .center
         
@@ -33,7 +34,7 @@ class StudentVC: UIViewController {
     private let userlbl : UITextField = {
         let lbl = UITextField()
         lbl.font = .systemFont(ofSize : 25)
-        lbl.textColor = .white
+        lbl.textColor = .blue
         lbl.isEnabled = false
 //        lbl.text = ""
         lbl.textAlignment = .center
@@ -41,11 +42,12 @@ class StudentVC: UIViewController {
         return lbl
     }()
     
-    private let noticelbl :UITextField = {
-        let lbl = UITextField()
+    private let noticelbl :UITextView = {
+        let lbl = UITextView()
         lbl.font = .systemFont(ofSize : 20)
-        lbl.textColor = .white
-        lbl.isEnabled = false
+        lbl.textColor = .blue
+        //lbl.isEnabled = false
+        lbl.isEditable = false
       //  lbl.text = ""
         lbl.textAlignment = .center
         
@@ -55,7 +57,7 @@ class StudentVC: UIViewController {
     private let stdlbl : UITextField = {
         let lbl = UITextField()
         lbl.font = .systemFont(ofSize : 25)
-        lbl.textColor = .white
+        lbl.textColor = .blue
        // btn.setTitleColor(.white, for: .normal)
        // lbl.layer.borderWidth = 10        //lbl.text = ""
         lbl.textAlignment = .center
@@ -66,7 +68,7 @@ class StudentVC: UIViewController {
     private let phonelbl : UITextField = {
         let lbl = UITextField()
         lbl.font = .systemFont(ofSize : 20)
-        lbl.textColor = .white
+        lbl.textColor = .blue
         lbl.isEnabled = false
         lbl.text = ""
         lbl.textAlignment = .center
@@ -187,7 +189,7 @@ class StudentVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .red
+        view.backgroundColor = .white
         
         title = "Student - Profile"
         
@@ -211,14 +213,17 @@ class StudentVC: UIViewController {
         
         sid = UserDefaults.standard.string(forKey: "username")!
         
+        
         studarray = sqlitehandler.shared.fetch()
         noticearray = sqlitehandler.shared.nfetch()
         
         let c = noticearray.count
         for i in 0..<c
         {
-            noticelbl.text  = noticearray[i].msg
+           msgdisp  += " | " + noticearray[i].msg
+            
         }
+        noticelbl.text = msgdisp
         let cnt = studarray.count
         for j in 0..<cnt
         {
@@ -245,10 +250,10 @@ class StudentVC: UIViewController {
         super.viewDidLayoutSubviews()
         
         userlbl.frame = CGRect(x: 100, y: view.safeAreaInsets.top + 20, width: 200, height: 80)
-        namlbl.frame = CGRect(x: 100, y: userlbl.bottom + 5, width: 100, height: 80)
-        stdlbl.frame = CGRect(x: 100, y: namlbl.bottom + 5, width: 100, height: 80)
+        namlbl.frame = CGRect(x: 100, y: userlbl.bottom + 5, width: 200, height: 80)
+        stdlbl.frame = CGRect(x: 100, y: namlbl.bottom + 5, width: 200, height: 80)
         phonelbl.frame = CGRect(x: 100, y: stdlbl.bottom + 5, width: 200, height: 80)
-        noticelbl.frame = CGRect(x: 5, y: phonelbl.bottom + 2, width: 300, height: 80)
+        noticelbl.frame = CGRect(x: 50, y: phonelbl.bottom + 2, width: 300, height: 100)
         mybtn.frame = CGRect(x: 20, y: 630, width: view.width - 40, height: 80)
         
 
