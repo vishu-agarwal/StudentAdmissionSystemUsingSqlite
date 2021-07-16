@@ -11,6 +11,7 @@ import UIKit
 class StudentVC: UIViewController {
 
     var msgdisp = ""
+    // StudentVC;
     var sid = ""
    // let sname = UserDefaults.standard.string(forKey: "name")
   //  let sclass = UserDefaults.standard.string(forKey: "std")
@@ -147,7 +148,7 @@ class StudentVC: UIViewController {
                alert.addAction(action)
                 
                 DispatchQueue.main.async {
-                    self.present(alert,animated: true,completion: nil)
+                    self.present(alert,animated: false,completion: nil)
                 }
                 
             }

@@ -89,8 +89,10 @@ extension StudentListVC : UITableViewDelegate, UITableViewDataSource{
                 let  alert = UIAlertController(title: "Successfully", message: "Deletion Done !!!", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: {
                     [weak self] _ in
-                    let vc = StudentListVC()
-                    self?.navigationController?.pushViewController(vc, animated: true)
+                    
+                    self?.studtbl.reloadData()
+                   // let vc = StudentListVC()
+                    //self?.navigationController?.pushViewController(vc, animated: true)
                 }))
                 DispatchQueue.main.async {
                     self?.present(alert,animated: true,completion: nil)

@@ -10,7 +10,7 @@ import UIKit
 
 class LoginVc: UIViewController {
 
-    private var studarray = [Student]()
+    private var studarray = [student]()
     
     private let usertxt:UITextField = {
         let txt = UITextField()
@@ -64,12 +64,12 @@ class LoginVc: UIViewController {
             let vc = ViewController()
             let nav = UINavigationController(rootViewController: vc)
             nav.modalPresentationStyle = .fullScreen
-            nav.setNavigationBarHidden(false, animated: true)
+            nav.setNavigationBarHidden(false, animated: false)
             present(nav,animated: true)
             UserDefaults.standard.setValue("abcdefg", forKey: "adminToken")
            UserDefaults.standard.setValue(usertxt.text, forKey: "username")
             
-            self.dismiss(animated: true)
+            //self.dismiss(animated: false)
             
         }
         else
@@ -101,7 +101,7 @@ class LoginVc: UIViewController {
                     let  alert = UIAlertController(title: "Incorrect!", message: "Username and password is incorrect !", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
                     DispatchQueue.main.async {
-                        self.present(alert,animated: true,completion : nil)
+                        self.present(alert,animated: false,completion : nil)
                         
                     }
                 }
@@ -120,7 +120,7 @@ class LoginVc: UIViewController {
         view.addSubview(mybtn)
         // Do any additional setup after loading the view.
         view.backgroundColor = .lightGray
-        studarray  = CoreDataHandler.shared.fetch()
+        studarray  = sqlitehandler.shared.fetch()
     }
     
     override func viewWillAppear(_ animated: Bool) {

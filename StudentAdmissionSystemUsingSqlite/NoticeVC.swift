@@ -88,8 +88,10 @@ extension NoticeVC : UITableViewDelegate, UITableViewDataSource{
                 let  alert = UIAlertController(title: "Successfully", message: "Deletion Done !!!", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: {
                     [weak self] _ in
-                    let vc = NoticeVC()
-                    self?.navigationController?.pushViewController(vc, animated: true)
+                   // let vc = NoticeVC()
+                    //self?.navigationController?.pushViewController(vc, animated: true)
+                    
+                    self?.noticetbl.reloadData()
                 }))
                 DispatchQueue.main.async {
                     self?.present(alert,animated: true,completion: nil)
