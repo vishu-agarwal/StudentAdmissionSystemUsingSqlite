@@ -91,7 +91,7 @@ extension StudentListVC : UITableViewDelegate, UITableViewDataSource{
                     [weak self] _ in
                     
                     self?.studtbl.reloadData()
-                   // let vc = StudentListVC()
+                    // let vc = StudentListVC()
                     //self?.navigationController?.pushViewController(vc, animated: true)
                 }))
                 DispatchQueue.main.async {

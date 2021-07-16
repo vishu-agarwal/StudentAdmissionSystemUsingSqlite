@@ -15,8 +15,8 @@
 		0B26690A269C4BAC00E0C08B /* NoticeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B266909269C4BAC00E0C08B /* NoticeVC.swift */; };
 		0B26690C269C4E0100E0C08B /* note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B26690B269C4E0100E0C08B /* note.swift */; };
 		0B26690E269C512800E0C08B /* NewNoticeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B26690D269C512800E0C08B /* NewNoticeVC.swift */; };
-		0B6F9AFD26A036DA003DBFD3 /* AdminVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F9AFC26A036DA003DBFD3 /* AdminVC.swift */; };
 		0B70D22426A179150053E2EF /* LoginVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B70D22326A179150053E2EF /* LoginVc.swift */; };
+		0B70D22626A179DC0053E2EF /* StudentListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B70D22526A179DC0053E2EF /* StudentListVC.swift */; };
 		0BDB5A5F2696C4C8006FCF32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDB5A5E2696C4C8006FCF32 /* AppDelegate.swift */; };
 		0BDB5A612696C4C8006FCF32 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDB5A602696C4C8006FCF32 /* ViewController.swift */; };
 		0BDB5A642696C4C8006FCF32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BDB5A622696C4C8006FCF32 /* Main.storyboard */; };
@@ -33,8 +33,8 @@
 		0B266909269C4BAC00E0C08B /* NoticeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeVC.swift; sourceTree = "<group>"; };
 		0B26690B269C4E0100E0C08B /* note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = note.swift; sourceTree = "<group>"; };
 		0B26690D269C512800E0C08B /* NewNoticeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoticeVC.swift; sourceTree = "<group>"; };
-		0B6F9AFC26A036DA003DBFD3 /* AdminVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminVC.swift; sourceTree = "<group>"; };
 		0B70D22326A179150053E2EF /* LoginVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVc.swift; sourceTree = "<group>"; };
+		0B70D22526A179DC0053E2EF /* StudentListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListVC.swift; sourceTree = "<group>"; };
 		0BDB5A5B2696C4C8006FCF32 /* StudentAdmissionSystemUsingSqlite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudentAdmissionSystemUsingSqlite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BDB5A5E2696C4C8006FCF32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BDB5A602696C4C8006FCF32 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +58,7 @@
 		0BDB5A522696C4C8006FCF32 = {
 			isa = PBXGroup;
 			children = (
+				0B70D22526A179DC0053E2EF /* StudentListVC.swift */,
 				0BDB5A5D2696C4C8006FCF32 /* StudentAdmissionSystemUsingSqlite */,
 				0BDB5A5C2696C4C8006FCF32 /* Products */,
 			);
@@ -79,7 +80,6 @@
 				0B26690D269C512800E0C08B /* NewNoticeVC.swift */,
 				0B2449CC26983F8400E9B216 /* NewStudvc.swift */,
 				0B2449C82698350900E9B216 /* student.swift */,
-				0B6F9AFC26A036DA003DBFD3 /* AdminVC.swift */,
 				0B26690B269C4E0100E0C08B /* note.swift */,
 				0B266909269C4BAC00E0C08B /* NoticeVC.swift */,
 				0B70D22326A179150053E2EF /* LoginVc.swift */,
@@ -167,6 +167,7 @@
 			files = (
 				0B26690C269C4E0100E0C08B /* note.swift in Sources */,
 				0B26690E269C512800E0C08B /* NewNoticeVC.swift in Sources */,
+				0B70D22626A179DC0053E2EF /* StudentListVC.swift in Sources */,
 				0B70D22426A179150053E2EF /* LoginVc.swift in Sources */,
 				0B08D3DB269D857900C4F883 /* StudentVC.swift in Sources */,
 				0BDB5A612696C4C8006FCF32 /* ViewController.swift in Sources */,
@@ -175,7 +176,6 @@
 				0BDB5A5F2696C4C8006FCF32 /* AppDelegate.swift in Sources */,
 				0B0C215F269824B100C4291F /* sqlitehandler.swift in Sources */,
 				0B26690A269C4BAC00E0C08B /* NoticeVC.swift in Sources */,
-				0B6F9AFD26A036DA003DBFD3 /* AdminVC.swift in Sources */,
 				0B2449C92698350900E9B216 /* student.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
