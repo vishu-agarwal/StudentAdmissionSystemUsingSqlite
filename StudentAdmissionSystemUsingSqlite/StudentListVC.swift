@@ -87,7 +87,7 @@ extension StudentListVC : UITableViewDelegate, UITableViewDataSource{
            
                 self?.studArray.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
-                
+                self?.studtbl.reloadData()
         }
         
             

@@ -9,7 +9,7 @@
 import UIKit
 
 class LoginVc: UIViewController {
-
+    
     private var studarray = [student]()
     
     private let usertxt:UITextField = {
@@ -58,7 +58,7 @@ class LoginVc: UIViewController {
         
         if usertxt.text == "admin" && pswdtxt.text == "admin"
         {
-           /* let vc = ViewController()
+            /* let vc = ViewController()
              navigationController?.pushViewController(vc, animated: true)*/
             
             let vc = ViewController()
@@ -67,7 +67,7 @@ class LoginVc: UIViewController {
             nav.setNavigationBarHidden(false, animated: false)
             present(nav,animated: true)
             UserDefaults.standard.setValue("abcdefg", forKey: "adminToken")
-           UserDefaults.standard.setValue(usertxt.text, forKey: "username")
+            UserDefaults.standard.setValue(usertxt.text, forKey: "username")
             
             //self.dismiss(animated: false)
             
@@ -80,7 +80,7 @@ class LoginVc: UIViewController {
                 if usertxt.text == studarray[i].spid && pswdtxt.text == studarray[i].password
                 {
                     /*let vc = StudentVC()
-                    navigationController?.pushViewController(vc, animated: true)*/
+                     navigationController?.pushViewController(vc, animated: true)*/
                     let vc = StudentVC()
                     let nav = UINavigationController(rootViewController: vc)
                     nav.modalPresentationStyle = .fullScreen
@@ -89,15 +89,15 @@ class LoginVc: UIViewController {
                     
                     UserDefaults.standard.setValue("qwertyuiop", forKey: "studToken")
                     UserDefaults.standard.setValue(usertxt.text, forKey: "username")
-                   // UserDefaults.standard.setValue(studarray[i].standard, forKey: "std")
-                 //   UserDefaults.standard.setValue(studarray[i].studName, forKey: "name")
-                 //   UserDefaults.standard.setValue(studarray[i].phoneno, forKey: "phone")
+                    // UserDefaults.standard.setValue(studarray[i].standard, forKey: "std")
+                    //   UserDefaults.standard.setValue(studarray[i].studName, forKey: "name")
+                    //   UserDefaults.standard.setValue(studarray[i].phoneno, forKey: "phone")
                     
                     //self.dismiss(animated: true)
                     break
                 }
                 else{
-                 
+                    
                     let  alert = UIAlertController(title: "Incorrect!", message: "Username and password is incorrect !", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
                     DispatchQueue.main.async {
@@ -113,7 +113,7 @@ class LoginVc: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = "LOGIN"
         view.addSubview(pswdtxt)
         view.addSubview(usertxt)
@@ -133,19 +133,19 @@ class LoginVc: UIViewController {
             //("abcdefg", forKey: "adminToken"
         {
             /*let vc = ViewController()
-            navigationController?.pushViewController(vc, animated: true)*/
+             navigationController?.pushViewController(vc, animated: true)*/
             let vc = ViewController()
-         let nav = UINavigationController(rootViewController: vc)
-         nav.modalPresentationStyle = .fullScreen
+            let nav = UINavigationController(rootViewController: vc)
+            nav.modalPresentationStyle = .fullScreen
             nav.setNavigationBarHidden(false, animated: true)
-         present(nav,animated: true)
- 
- }
+            present(nav,animated: true)
+            
+        }
         else if UserDefaults.standard.string(forKey: "studToken") != nil
             //("qwertyuiop", forKey: "studToken") != nil
         {
             /*let vc = StudentVC()
-            navigationController?.pushViewController(vc, animated: true)*/
+             navigationController?.pushViewController(vc, animated: true)*/
             let vc = StudentVC()
             let nav = UINavigationController(rootViewController: vc)
             nav.modalPresentationStyle = .fullScreen
@@ -153,12 +153,12 @@ class LoginVc: UIViewController {
             present(nav,animated: true)
             
         }
-       /* else{
-            print("Remain on login Screen")
-            let vc = LoginVc()
-            navigationController?.pushViewController(vc, animated: false)
-            
-        }*/
+        /* else{
+         print("Remain on login Screen")
+         let vc = LoginVc()
+         navigationController?.pushViewController(vc, animated: false)
+         
+         }*/
     }
     
     override func viewDidLayoutSubviews() {
@@ -169,5 +169,5 @@ class LoginVc: UIViewController {
         mybtn.frame = CGRect(x: 20,y: pswdtxt.bottom + 10, width: view.width - 40, height: 50)
         
     }
-
+    
 }
